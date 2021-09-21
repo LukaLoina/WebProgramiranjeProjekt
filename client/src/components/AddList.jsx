@@ -39,6 +39,7 @@ export default class AddList extends React.Component{
 	} else {
 	    return;
 	}
+	this.setState({name: "", remoteAddress: ""})
     }
 
     setSelection = (event) => {
@@ -50,6 +51,7 @@ export default class AddList extends React.Component{
     
     render(){
 	return <div className="add-list">
+	    <label className="add-list-label" for="selection">Type of list:</label>
 	    <select class="add-selection" name="selection" onChange={this.setSelection}>
 		<option value="temporary">temporary</option>
 		<option value="local">local</option>
@@ -57,13 +59,13 @@ export default class AddList extends React.Component{
 	    </select>
 
 	    <div className={(this.state.selection !== "websocket") ? "add-list-entry" : "add-list-entry hidden"}>
-		<label className="add-list-label" for="type">name</label>
-		<input className="add-list-input" onChange={this.setName} />
+		<label className="add-list-label" for="type">Name</label>
+		<input className="add-list-input" onChange={this.setName} value={this.state.name} />
 	    </div>
 	    
 	    <div className={(this.state.selection === "websocket") ? "add-list-entry" : "add-list-entry hidden"}>
-		<label className="add-list-label" for="type">address</label>
-		<input className="add-list-input" onChange={this.setRemoteAddress} />
+		<label className="add-list-label" for="type">Address</label>
+		<input className="add-list-input" onChange={this.setRemoteAddress} value={this.state.remoteAddress} />
 	    </div>
 	    
 	    <button onClick={this.addActionManager}>add list</button>

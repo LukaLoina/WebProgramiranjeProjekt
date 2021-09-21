@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    font-family: Serif;
 }
 
 html, body, #root{
@@ -29,20 +30,26 @@ code {
 .header{
     text-align: center;
     user-select: none;
-    font-size: 32px;
-    line-height: 36px;
-    margin-bottom: 20px;
+    font-size: 60px;
+    line-height: 70px;
+    padding:20px 0;
+    background:#69728A;
+    color: white;
 }
 
 .content{
     flex-direction: column;
     flex-grow: 2;
     align-items: center;
+    background: #A2B4C6;
+    padding: 35px 0;
 }
 
 .footer{
     border-top: 1px black solid;
     text-align: center;
+    background:#69728A;
+    color: white;
 }
 
 .add-list{
@@ -68,6 +75,7 @@ code {
 .add-list-label{
    font-size: 24px;
    line-height: 32px;
+   color:white;
 }
 
 .add-list-input{
