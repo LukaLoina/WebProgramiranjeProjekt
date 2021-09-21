@@ -20,7 +20,7 @@ code {
     monospace;
 }
 
-#root, .header, .content, .footer {
+#root, .content {
     display: flex;
 }
 
@@ -29,7 +29,11 @@ code {
 }
 
 .header{
-    border-bottom: 1px black solid;
+    text-align: center;
+    user-select: none;
+    font-size: 32px;
+    line-height: 36px;
+    margin-bottom: 20px;
 }
 
 .content{
@@ -40,6 +44,7 @@ code {
 
 .footer{
     border-top: 1px black solid;
+    text-align: center;
 }
 
 .add-list{
@@ -50,6 +55,7 @@ code {
 .add-selection{
     margin-bottom: 5px;
 }
+
 
 .add-list-entry{
     transition: height 2s;
@@ -81,6 +87,10 @@ code {
     max-width:100%;
 }
 
+.list-container > .elements{
+    padding-bottom:25px;
+}
+
 .list-container-title{
     display: flex;
     flex-direction: row;
@@ -90,7 +100,10 @@ code {
 .list-container-title-text{
     color: white;
     font-size:32px;
-    line-size:36px;
+    line-height: 40px;
+    width: 100%;
+    padding-left: 1em;
+    word-break: break-word;
 }
 
 .remove-list-container-button{
@@ -113,18 +126,17 @@ code {
 
 }
 
-.element{
-    display:flex;
-    flex-direction:column;
-    margin-bottom:25px;
-    width: 100%;
-    overflow:hidden;
-}
-
 .elements{
     min-height:2em;
 }
 
+.element{
+    display:flex;
+    flex-direction:column;
+
+    width: 100%;
+    overflow:hidden;
+}
 .element-title{
     width:100%;
     border-bottom: 1px black solid;
@@ -132,16 +144,18 @@ code {
     flex-direction: row;
     background: #3357C1;
     color: white;
-
+    word-break: break-word;
 }
 
 .element-depth-marker{
+    user-select: none;
     padding: 0 0.5em;
     border-right: 1px gray solid;
 }
 
 .element-title-text{
     flex-grow:2;
+    word-break: break-word;
 }
 
 .element-body{
@@ -152,6 +166,7 @@ code {
 
 .element-body-text{
     flex-grow:2;
+    word-break: break-word;
 }
 
 .gu-transit {
@@ -183,4 +198,5 @@ code {
 .hidden{
     height:0px;
     min-height:0px;
+    margin:0;
 }
