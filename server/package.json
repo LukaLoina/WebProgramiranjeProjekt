@@ -1,0 +1,19 @@
+{
+    "name": "server",
+    "version": "1.0.0",
+    "description": "Server za web app popisa",
+    "private": true,
+    "type":"module",
+    "scripts": {
+	"start": "node ./index.js"
+    },
+    "author": "Luka Loina",
+    "dependencies": {
+	"@reduxjs/toolkit": "^1.6.1",
+	"express": "^4.17.1",
+	"express-ws": "^5.0.2",
+	"object-hash": "^2.2.0",
+	"redux": "^4.1.1",
+	"uuid": "^8.3.2"
+    }
+}
