@@ -5,30 +5,42 @@ export default class WebSocketActionManager extends BaseManager{
     constructor(name, guid, address, callback){
 	super(name, guid);
 	
-	
-	let url = new URL(address);
-	let uuidURL = new URL("/guid", url);
-	uuidURL.protocol = "http:"
-	
-	fetch(uuidURL, {method: 'GET', mode: 'cors',})
-	    .then(response => response.json())
-	    .then(data => {
-		this.guid = data.guid
-		if(callback) callback(this);
-		
-		url.protocol = "ws:";
-		this.socket = new WebSocket(url)
-		this.socket.addEventListener('message', this.handleMessage);
+	try{
+	    let url = new URL(address);
+	    let uuidURL = new URL("/guid", url);
+	    uuidURL.protocol = document.location.protocol
 
-		this.socket.addEventListener('open', (event) => {
-		    this.socket.send(JSON.stringify({"type":"server", "action":"getState"}))
+	    fetch(uuidURL, {method: 'GET', mode: 'cors',})
+		.then(response => response.json())
+		.then(data => {
+		    this.guid = data.guid
+		    if(callback) callback(this);
+
+		    if(document.location.protocol === "https:"){
+			url.protocol = "wss:";
+		    } else {
+			url.protocol = "ws:";
+		    }
+
+		    this.socket = new WebSocket(url)
+		    this.socket.addEventListener('message', this.handleMessage);
+
+		    this.socket.addEventListener('open', (event) => {
+			this.socket.send(JSON.stringify({"type":"server", "action":"getState"}))
+		    })
 		})
-	    })
-	    .catch((error) => {
-		console.error('Error:', error);
-	    });
-    }
+		.catch((error) => {
+		    console.error(error);
+		});
+	} catch(e){
+	    console.error(e)
+	}
+    } 
 
+    destructor(){
+	this.socket.close();
+    }
+    
     handleMessage = (event) => {
 	let data = JSON.parse(event.data)
 	data.container = this.guid;

@@ -3,17 +3,13 @@ import HashTree from '../../structures/HashTree';
 export default function removeItem(state, action){
     let { container, item, recursive } = action
 
-    console.log(action);
     if(recursive){
 	item.children.forEach(c => {
 	    let child = state.elements[container].find(e => e.guid === c);
-	    console.log(`delete ${c}, child of ${item.guid}`)
-	    console.log(child.guid)
 	    removeItem(state, {container, item: child, recursive: true})
 	})
     }
-    console.log("remove item");
-    console.log(item.guid);
+    
     let parentElement = state.elements[container].find(e => e.guid === item.parent);
 
     //remove from parent

@@ -15,14 +15,12 @@ export default class LocalActionManager extends TempActionManager{
 	}
     }
     destructor(){
-	console.log("local action manager destructor!");
 	this.unsubscribe()
 	LocalStorage.remove(this.guid);
 
 	const containers = LocalStorage.read("containers");
 	const index = containers.indexOf(this.guid);
 	if (index !== -1) {
-	    console.log("removing this from containers");
 	    containers.splice(index, 1);
 	    LocalStorage.write("containers", containers);
 	}
@@ -30,7 +28,6 @@ export default class LocalActionManager extends TempActionManager{
     }
 
     listener = () => {
-	console.log("listener called");
 	const state = store.getState().list.elements[this.guid]
 	LocalStorage.write(this.guid, state);
     }

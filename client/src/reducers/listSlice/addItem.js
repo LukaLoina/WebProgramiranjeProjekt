@@ -2,7 +2,7 @@ import HashTree from '../../structures/HashTree';
 
 export default function addItem(state, action){
     const { container, item, before } = action
-    console.log(action);
+
     let parentElement = state.elements[container].find(e => e.guid === item.parent);
 
     if(parentElement){

@@ -20,7 +20,6 @@ export default class BaseManager{
     }
 
     destroyContainer(){
-	console.log("destroy container BM");
 	const data = {type: 'list/destroyContainer',
 		      guid: this.guid}
 	store.dispatch(data);

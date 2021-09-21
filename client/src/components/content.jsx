@@ -53,7 +53,6 @@ class Content extends React.Component {
 
     moveElement = (el, destination, source, sibling) => {
 	this.drake.cancel();
-	console.log({el: el, destination: destination, source: source, sibling: sibling})
 
 	const sourceContainerElement = el.closest(".list-container");
 	const destinationContainerElement = destination.closest(".list-container");

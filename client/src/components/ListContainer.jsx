@@ -22,7 +22,6 @@ class ListContainer extends React.Component {
     }
 
     destroyContainer = () => {
-	console.log("destroy container");
 	this.props.actionManager.destroyContainer();
 	if(this.props.destroyContainer) this.props.destroyContainer(this.props.actionManager);
     }

@@ -30,15 +30,11 @@ export default class AddList extends React.Component{
 	}
 	
 	const guid = uuidv4();
-	console.log(this.state);
 	if(this.state.selection === "temporary"){
-	    console.log("creating temporary AM");
 	    new TempActionManager(this.state.name, guid, this.onActionManagerCreate);
 	} else if(this.state.selection === "local"){
-	    console.log("creating local AM");
 	    new LocalActionManager(this.state.name, guid, this.onActionManagerCreate);
 	} else if(this.state.selection === "websocket"){
-	    console.log("creating websocket AM");
 	    new WebSocketActionManager("websocket", guid, this.state.remoteAddress, this.onActionManagerCreate);
 	} else {
 	    return;
