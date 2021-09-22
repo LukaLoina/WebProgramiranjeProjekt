@@ -14,7 +14,7 @@ export default class BaseManager{
 
     createContainer(){
 	const data = {type:'list/createContainer',
-		      name: this.name,
+		      title: this.name,
 		      guid: this.guid}
 	store.dispatch(data);
     }

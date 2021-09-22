@@ -1,6 +1,8 @@
 import express from 'express'
 import expressWs from 'express-ws'
 
+import pool from './db/index.js'
+
 import store from './reducers/index.js'
 import { v4 as uuidv4 } from 'uuid'
 import path from 'path'
@@ -9,10 +11,14 @@ import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-let guid = uuidv4()
-store.dispatch({type:'list/createContainer',
-		name: "Server list",
-		guid})
+let guid = store.getState().list.containers && store.getState().list.containers[0];
+
+if(!guid){
+    guid = uuidv4()
+    store.dispatch({type:'list/createContainer',
+		    title: "Server list",
+		    guid})
+}
 
 const app = express()
 const wsInstance = expressWs(app);
@@ -21,7 +27,7 @@ const port = process.env.PORT || '8080'
 app.get('/guid', (req, res) => {
     console.log("request guid");
     res.setHeader("Access-Control-Allow-Origin", "*");
-    res.json({"guid": store.getState().list.containers[0]});
+    res.json({"guid": guid});
 })
 
 app.ws('/', function(ws, req){

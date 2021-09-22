@@ -37,14 +37,14 @@ class ListContainer extends React.Component {
 
     updateItem = () => {
 	this.updateCounter = 0;
-	this.props.actionManager.updateItem({...this.props.container, name:this.titleRef.current.lastHtml})
+	this.props.actionManager.updateItem({...this.props.container, title:this.titleRef.current.lastHtml})
     }
     
     render(){
 	if(this.props.container){
 	    return <div class="list-container" data-guid={this.props.container.guid}>
 		<div className="list-container-title">
-		    <ContentEditable ref={this.titleRef} className="list-container-title-text" html={this.props.container.name} onChange={this.handleChange} />
+		    <ContentEditable ref={this.titleRef} className="list-container-title-text" html={this.props.container.title} onChange={this.handleChange} />
 		    <button class="remove-list-container-button" onClick={this.destroyContainer}>X</button>
 		</div>
 		<div className="elements" data-key={this.props.container.guid}>

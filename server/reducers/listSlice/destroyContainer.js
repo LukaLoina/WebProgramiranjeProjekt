@@ -1,3 +1,5 @@
+import pool from '../../db/index.js'
+
 export default function destroyContainer(state, action){
     const { guid } = action;
     
@@ -7,4 +9,14 @@ export default function destroyContainer(state, action){
     if(index !== -1){
 	state.containers.splice(index, 1);
     }
+
+    pool.query('DELETE FROM containers WHERE guid = $1', [guid],(err, result) => {
+	if (err) {
+	    return console.error('Error executing query', err.stack)
+    }})
+
+    pool.query('DELETE FROM elements WHERE container = $1', [guid],(err, result) => {
+	if (err) {
+	    return console.error('Error executing query', err.stack)
+    }})
 } 

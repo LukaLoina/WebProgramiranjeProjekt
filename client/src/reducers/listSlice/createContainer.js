@@ -1,8 +1,8 @@
 import HashTree from '../../structures/HashTree';
 
 export default function createContainer(state, action){
-    const { name, guid } = action;
-    const container = { name, guid, children: []};
+    const { title, guid } = action;
+    const container = { title, guid, children: []};
     container.hash = HashTree.computeHash(container)
     
     state.elements[guid] = [container];
